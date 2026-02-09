@@ -1,0 +1,47 @@
+[project]
+name = "skill-kit"
+version = "0.1.0"
+description = "Ship Claude Code skills from Python packages with zero boilerplate."
+authors = [{ name = "Nima Shoghi", email = "nimashoghi@gmail.com" }]
+requires-python = ">=3.10"
+readme = "README.md"
+
+dependencies = [
+    "pyyaml",
+]
+
+[project.scripts]
+skill-kit = "skill_kit._cli:main"
+
+[project.urls]
+homepage = "https://github.com/nimashoghi/skill-kit"
+
+[dependency-groups]
+dev = [
+    "basedpyright",
+    "ruff",
+    "pytest",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.basedpyright]
+typeCheckingMode = "standard"
+deprecateTypingAliases = true
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+reportPrivateImportUsage = "none"
+
+[tool.ruff.lint]
+select = ["FA102", "FA100"]
+ignore = ["E731", "E741"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
