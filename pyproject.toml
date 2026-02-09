@@ -1,5 +1,5 @@
 [project]
-name = "skill-kit"
+name = "nshskill"
 version = "0.1.0"
 description = "Ship Claude Code skills from Python packages with zero boilerplate."
 authors = [{ name = "Nima Shoghi", email = "nimashoghi@gmail.com" }]
@@ -11,10 +11,10 @@ dependencies = [
 ]
 
 [project.scripts]
-skill-kit = "skill_kit._cli:main"
+nshskill = "nshskill._cli:main"
 
 [project.urls]
-homepage = "https://github.com/nimashoghi/skill-kit"
+homepage = "https://github.com/nimashoghi/nshskill"
 
 [dependency-groups]
 dev = [

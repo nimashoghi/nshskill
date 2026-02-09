@@ -4,7 +4,7 @@ import textwrap
 
 import pytest
 
-from skill_kit import Skill, add_skill_commands, create_skill_cli
+from nshskill import Skill, add_skill_commands, create_skill_cli
 
 
 # ---------------------------------------------------------------------------

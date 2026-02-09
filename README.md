@@ -1,17 +1,17 @@
-# skill-kit
+# nshskill
 
 Ship [Claude Code skills](https://docs.anthropic.com/en/docs/claude-code) from Python packages with zero boilerplate.
 
 ## Why
 
-Claude Code skills are markdown files that live in `.claude/skills/` and teach Claude how to use your library. If you maintain a Python package, you probably want users to install your skill with a single command — but wiring up the file copying, frontmatter parsing, and CLI yourself is tedious and repetitive. `skill-kit` handles all of that so you can focus on writing the skill content.
+Claude Code skills are markdown files that live in `.claude/skills/` and teach Claude how to use your library. If you maintain a Python package, you probably want users to install your skill with a single command — but wiring up the file copying, frontmatter parsing, and CLI yourself is tedious and repetitive. `nshskill` handles all of that so you can focus on writing the skill content.
 
 ## Install
 
 ```bash
-pip install skill-kit
+pip install nshskill
 # or
-uv add skill-kit
+uv add nshskill
 ```
 
 Requires Python 3.10+.
@@ -23,11 +23,11 @@ Requires Python 3.10+.
 Install the `init-skill` skill, then invoke it in Claude Code:
 
 ```bash
-skill-kit skill install          # install to current project
-skill-kit skill install --global # install at user level
+nshskill skill install          # install to current project
+nshskill skill install --global # install at user level
 ```
 
-Then in Claude Code, run `/init-skill` and Claude will analyze your codebase and set up the full skill-kit integration — `_skill/` directory, `SKILL.md`, CLI wiring, and dependency.
+Then in Claude Code, run `/init-skill` and Claude will analyze your codebase and set up the full nshskill integration — `_skill/` directory, `SKILL.md`, CLI wiring, and dependency.
 
 ### Option B: Manual setup
 
@@ -67,7 +67,7 @@ The simplest approach — a standalone CLI with just the skill command:
 ```python
 # src/myproject/cli.py
 from pathlib import Path
-from skill_kit import Skill, create_skill_cli
+from nshskill import Skill, create_skill_cli
 
 skill = Skill.from_dir(Path(__file__).resolve().parent / "_skill")
 main = create_skill_cli("myproject", skill)
@@ -92,7 +92,7 @@ myproject skill uninstall        # remove it
 ### `Skill`
 
 ```python
-from skill_kit import Skill
+from nshskill import Skill
 ```
 
 A dataclass with two fields:
@@ -126,7 +126,7 @@ Remove an installed skill directory. Returns `True` if something was removed, `F
 ### `add_skill_commands`
 
 ```python
-from skill_kit import add_skill_commands
+from nshskill import add_skill_commands
 ```
 
 ```python
@@ -138,7 +138,7 @@ Add `skill install` and `skill uninstall` subcommands to an existing argparse su
 ```python
 import argparse
 from pathlib import Path
-from skill_kit import Skill, add_skill_commands, dispatch_skill
+from nshskill import Skill, add_skill_commands, dispatch_skill
 
 def main():
     parser = argparse.ArgumentParser(prog="myproject")
@@ -162,7 +162,7 @@ def main():
 ### `dispatch_skill`
 
 ```python
-from skill_kit.cli import dispatch_skill
+from nshskill.cli import dispatch_skill
 ```
 
 ```python
@@ -174,7 +174,7 @@ Route a parsed `skill` subcommand to the appropriate `install`/`uninstall` metho
 ### `create_skill_cli`
 
 ```python
-from skill_kit import create_skill_cli
+from nshskill import create_skill_cli
 ```
 
 ```python
@@ -186,7 +186,7 @@ Return a ready-to-use `main()` function for packages that only need skill comman
 ```python
 # src/myproject/cli.py
 from pathlib import Path
-from skill_kit import Skill, create_skill_cli
+from nshskill import Skill, create_skill_cli
 
 main = create_skill_cli("myproject", Skill.from_dir(Path(__file__).resolve().parent / "_skill"))
 ```

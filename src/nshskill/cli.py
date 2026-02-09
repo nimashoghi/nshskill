@@ -5,7 +5,7 @@ import sys
 from collections.abc import Callable
 from pathlib import Path
 
-from skill_kit.skill import Skill
+from nshskill.skill import Skill
 
 
 def add_skill_commands(
@@ -78,7 +78,7 @@ def create_skill_cli(prog: str, skill: Skill) -> Callable[[], None]:
         myproject = "myproject._cli:main"
 
         # _cli.py
-        from skill_kit import Skill, create_skill_cli
+        from nshskill import Skill, create_skill_cli
         main = create_skill_cli("myproject", Skill.from_dir(...))
     """
 

@@ -1,6 +1,6 @@
 ---
 name: init-skill
-description: Initialize a Claude Code skill for a Python package using skill-kit. Use when setting up a new skill for a library, creating SKILL.md for a package, wiring CLI install/uninstall commands, or adding skill-kit integration to a Python project.
+description: Initialize a Claude Code skill for a Python package using nshskill. Use when setting up a new skill for a library, creating SKILL.md for a package, wiring CLI install/uninstall commands, or adding nshskill integration to a Python project.
 disable-model-invocation: true
 skills:
   - creating-skills
@@ -8,7 +8,7 @@ skills:
 
 # Initialize Package Skill
 
-Analyze this codebase and create a Claude Code skill for it using `skill-kit`. Follow the `creating-skills` skill for all SKILL.md authoring guidance (description format, naming, content quality, progressive disclosure).
+Analyze this codebase and create a Claude Code skill for it using `nshskill`. Follow the `creating-skills` skill for all SKILL.md authoring guidance (description format, naming, content quality, progressive disclosure).
 
 ## Process
 
@@ -29,12 +29,12 @@ Analyze this codebase and create a Claude Code skill for it using `skill-kit`. F
    <Concise instructions for Claude — import conventions, key APIs, patterns, rules.>
    ```
 
-4. **Add `skill-kit` dependency** to `pyproject.toml`:
+4. **Add `nshskill` dependency** to `pyproject.toml`:
 
    ```toml
    dependencies = [
        ...,
-       "skill-kit",
+       "nshskill",
    ]
    ```
 
@@ -45,7 +45,7 @@ Analyze this codebase and create a Claude Code skill for it using `skill-kit`. F
    ```python
    # src/<package>/cli.py
    from pathlib import Path
-   from skill_kit import Skill, create_skill_cli
+   from nshskill import Skill, create_skill_cli
 
    skill = Skill.from_dir(Path(__file__).resolve().parent / "_skill")
    main = create_skill_cli("<package-name>", skill)
@@ -60,7 +60,7 @@ Analyze this codebase and create a Claude Code skill for it using `skill-kit`. F
    **Existing CLI with argparse subparsers** — integrate:
 
    ```python
-   from skill_kit import Skill, add_skill_commands, dispatch_skill
+   from nshskill import Skill, add_skill_commands, dispatch_skill
 
    skill = Skill.from_dir(Path(__file__).resolve().parent / "_skill")
    add_skill_commands(subparsers, skill)
@@ -80,5 +80,5 @@ Analyze this codebase and create a Claude Code skill for it using `skill-kit`. F
 ## Checklist
 
 - [ ] SKILL.md passes the `creating-skills` quality checklist
-- [ ] `skill-kit` is in project dependencies
+- [ ] `nshskill` is in project dependencies
 - [ ] CLI works: `<package> skill install` and `<package> skill install --global`
